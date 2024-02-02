@@ -66,35 +66,33 @@ const AudioRecorder = () => {
     };
 
     return (
-        <div>
-            <h2>Audio Recorder</h2>
-            <main>
-                <div className="audio-controls">
-                    {!permission ? (
-                        <button onClick={getMicrophonePermission} type="button">
-                            Get Microphone
-                        </button>
-                    ) : null}
-                    {permission && recordingStatus === "inactive" ? (
-                        <button onClick={startRecording} type="button">
-                            Start Recording
-                        </button>
-                    ) : null}
-                    {recordingStatus === "recording" ? (
-                        <button onClick={stopRecording} type="button">
-                            Stop Recording
-                        </button>
-                    ) : null}
-                </div>
-                {audio ? (
-                    <div className="audio-player">
-                        <audio src={audio} controls></audio>
-                        <a download href={audio}>
-                            Download Recording
-                        </a>
-                    </div>
+        <div className="flex flex-col items-center justify-center pt-6">
+            <h2 className="text-xl font-bold text-black mb-4">Audio Recorder</h2>
+            <div className="audio-controls">
+                {!permission ? (
+                    <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300 mx-2" onClick={getMicrophonePermission} type="button">
+                        Get Microphone
+                    </button>
                 ) : null}
-            </main>
+                {permission && recordingStatus === "inactive" ? (
+                    <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition duration-300 mx-2" onClick={startRecording} type="button">
+                        Start Recording
+                    </button>
+                ) : null}
+                {recordingStatus === "recording" ? (
+                    <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 transition duration-300 mx-2" onClick={stopRecording} type="button">
+                        Stop Recording
+                    </button>
+                ) : null}
+            </div>
+            {audio ? (
+                <div className="audio-player mt-4">
+                    <audio src={audio} controls></audio>
+                    <a className="text-black mt-2" download href={audio}>
+                        Download Recording
+                    </a>
+                </div>
+            ) : null}
         </div>
     );
 };

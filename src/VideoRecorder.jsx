@@ -1,6 +1,31 @@
 import { useState, useRef } from "react";
 
 const mimeType = 'video/webm; codecs="opus,vp8"';
+// Define your emotion colors statically to work with Tailwind JIT compiler
+const emotionColors = {
+    happy: 'bg-green-500',
+    sad: 'bg-blue-500',
+    angry: 'bg-red-500',
+    // add more emotion color mappings as needed
+};
+
+const EmotionBars = ({ emotions }) => {
+    return (
+        <div className="flex flex-col justify-center space-y-2 ml-4">
+            {emotions.map((emotion, index) => (
+                <div key={index} className="flex items-center space-x-2">
+                    <span className="text-black">{emotion.name}</span>
+                    <div className="w-full bg-gray-200 rounded-full h-4">
+                        <div
+                            className={`${emotionColors[emotion.emotion.toLowerCase()]} h-4 rounded-full`}
+                            style={{ width: `${emotion.value}%` }}
+                        />
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
+};
 
 const VideoRecorder = () => {
     const [permission, setPermission] = useState(false);
@@ -16,6 +41,13 @@ const VideoRecorder = () => {
     const [recordedVideo, setRecordedVideo] = useState(null);
 
     const [videoChunks, setVideoChunks] = useState([]);
+    // Placeholder for emotion data
+    const [emotions] = useState([
+        { name: "Happy", value: 80, emotion: 'Happy' },
+        { name: "Sad", value: 50, emotion: 'Sad' },
+        { name: "Angry", value: 30, emotion: 'Angry' },
+        // ... add more emotions as needed
+    ]);
 
     const getCameraPermission = async () => {
         setRecordedVideo(null);
@@ -93,41 +125,40 @@ const VideoRecorder = () => {
     };
 
     return (
-        <div>
-            <h2>Video Recorder</h2>
-            <main>
-                <div className="video-controls">
-                    {!permission ? (
-                        <button onClick={getCameraPermission} type="button">
-                            Get Camera
-                        </button>
-                    ) : null}
-                    {permission && recordingStatus === "inactive" ? (
-                        <button onClick={startRecording} type="button">
-                            Start Recording
-                        </button>
-                    ) : null}
-                    {recordingStatus === "recording" ? (
-                        <button onClick={stopRecording} type="button">
-                            Stop Recording
-                        </button>
-                    ) : null}
+        <div className="flex flex-col items-center justify-center pt-6">
+            <h2 className="text-xl font-bold text-black mb-4">Video Recorder</h2>
+            <div className="flex items-start">
+                <div className="video-container relative">
+                    {!recordedVideo ? (
+                        <video ref={liveVideoFeed} autoPlay className="w-auto" />
+                    ) : (
+                        <video className="recorded" src={recordedVideo} controls />
+                    )}
+                    {permission && <EmotionBars emotions={emotions} />}
                 </div>
-            </main>
-
-            <div className="video-player">
-                {!recordedVideo ? (
-                    <video ref={liveVideoFeed} autoPlay className="live-player"></video>
+            </div>
+            <div className="video-controls space-x-2 mt-4">
+                {!permission ? (
+                    <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300" onClick={getCameraPermission}>
+                        Get Camera
+                    </button>
                 ) : null}
-                {recordedVideo ? (
-                    <div className="recorded-player">
-                        <video className="recorded" src={recordedVideo} controls></video>
-                        <a download href={recordedVideo}>
-                            Download Recording
-                        </a>
-                    </div>
+                {permission && recordingStatus === "inactive" ? (
+                    <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition duration-300" onClick={startRecording}>
+                        Start Recording
+                    </button>
+                ) : null}
+                {recordingStatus === "recording" ? (
+                    <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 transition duration-300" onClick={stopRecording}>
+                        Stop Recording
+                    </button>
                 ) : null}
             </div>
+            {recordedVideo && (
+                <a className="text-black mt-4" download href={recordedVideo}>
+                    Download Recording
+                </a>
+            )}
         </div>
     );
 };

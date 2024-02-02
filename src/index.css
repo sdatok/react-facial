@@ -1,12 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -24,11 +25,15 @@ a:hover {
 }
 
 body {
+  /* Reset any margin, padding, and box-sizing to ensure styles are consistent */
   margin: 0;
-  display: flex;
-  place-items: start;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+  box-sizing: border-box;
+  /* Set the background to white */
+  background-color: #ffffff; /* White background */
+  min-height: 100vh; /* Minimum height to full viewport height */
+  width: 100%; /* Full width */
+  /* Remove display flex if it's not needed globally */
 }
 
 h1 {
@@ -54,49 +59,86 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
-...
-.button-flex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-.audio-controls,
-.video-controls {
-  margin-bottom: 20px;
-}
-.audio-player,
-.video-player {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.audio-player,
-.video-player,
-.recorded-player {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.live-player {
-  height: 200px;
-  width: 400px;
-  border: 1px solid #646cff;
-  margin-bottom: 30px;
-}
-.recorded-player video {
-  height: 400px;
-  width: 800px;
-}
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
+
+/*.button-flex {*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*  gap: 10px;*/
+/*}*/
+/*.audio-controls,*/
+/*.video-controls {*/
+/*  margin-bottom: 20px;*/
+/*}*/
+/*.audio-player,*/
+/*.video-player {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  align-items: center;*/
+/*}*/
+/*.audio-player,*/
+/*.video-player,*/
+/*.recorded-player {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  align-items: center;*/
+/*}*/
+/*.live-player {*/
+/*  height: 200px;*/
+/*  width: 400px;*/
+/*  border: 1px solid #646cff;*/
+/*  margin-bottom: 30px;*/
+/*}*/
+/*.recorded-player video {*/
+/*  height: 400px;*/
+/*  width: 800px;*/
+/*}*/
+/*@media (prefers-color-scheme: light) {*/
+/*  :root {*/
+/*    color: #213547;*/
+/*    background-color: #ffffff;*/
+/*  }*/
+/*  a:hover {*/
+/*    color: #747bff;*/
+/*  }*/
+/*  button {*/
+/*    background-color: #f9f9f9;*/
+/*  }*/
+/*}*/
+
+/*.logo {*/
+/*  height: 6em;*/
+/*  padding: 1.5em;*/
+/*  will-change: filter;*/
+/*  transition: filter 300ms;*/
+/*}*/
+/*.logo:hover {*/
+/*  filter: drop-shadow(0 0 2em #646cffaa);*/
+/*}*/
+/*.logo.react:hover {*/
+/*  filter: drop-shadow(0 0 2em #61dafbaa);*/
+/*}*/
+
+/*@keyframes logo-spin {*/
+/*  from {*/
+/*    transform: rotate(0deg);*/
+/*  }*/
+/*  to {*/
+/*    transform: rotate(360deg);*/
+/*  }*/
+/*}*/
+
+/*@media (prefers-reduced-motion: no-preference) {*/
+/*  a:nth-of-type(2) .logo {*/
+/*    animation: logo-spin infinite 20s linear;*/
+/*  }*/
+/*}*/
+
+/*.card {*/
+/*  padding: 2em;*/
+/*}*/
+
+/*.read-the-docs {*/
+/*  color: #888;*/
+/*}*/
+
