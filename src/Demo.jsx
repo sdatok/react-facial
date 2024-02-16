@@ -9,7 +9,7 @@ const Demo = () => {
     let [recordOption, setRecordOption] = useState("video");
     const toggleRecordOption = (type) => {
         return () => {
-            console.log(type);
+            //console.log(type);
             setRecordOption(type);
         };
     };
@@ -47,10 +47,7 @@ const Demo = () => {
                         {
                             recordOption === "video" ? <VideoRecorder /> : 
                             (recordOption === "audio" ? <AudioRecorder /> : 
-                                (() => {   
-                                    console.log("hello"); 
-                                    return <ImageRecorder />
-                                })()
+                                <ImageRecorder />
                             )
                         }
                     </div>
