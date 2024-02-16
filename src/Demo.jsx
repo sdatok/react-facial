@@ -2,12 +2,14 @@ import "./index.css";
 import { useState } from "react";
 import VideoRecorder from "../src/VideoRecorder";
 import AudioRecorder from "../src/AudioRecorder";
+import ImageRecorder from "../src/ImageRecorder";
 import { Link } from 'react-router-dom';
 
 const Demo = () => {
     let [recordOption, setRecordOption] = useState("video");
     const toggleRecordOption = (type) => {
         return () => {
+            console.log(type);
             setRecordOption(type);
         };
     };
@@ -32,13 +34,25 @@ const Demo = () => {
                                 Record Video
                             </button>
                             <button className="bg-purple-600 text-white px-6 py-3 rounded-full hover:bg-purple-700 transition duration-300"
+                                    onClick={toggleRecordOption("image")}>
+                                Capture Image
+                            </button>
+                            <button className="bg-purple-600 text-white px-6 py-3 rounded-full hover:bg-purple-700 transition duration-300"
                                     onClick={toggleRecordOption("audio")}>
                                 Record Audio
                             </button>
                         </div>
                     </div>
                     <div className="flex justify-center mt-6">
-                        {recordOption === "video" ? <VideoRecorder /> : <AudioRecorder />}
+                        {
+                            recordOption === "video" ? <VideoRecorder /> : 
+                            (recordOption === "audio" ? <AudioRecorder /> : 
+                                (() => {   
+                                    console.log("hello"); 
+                                    return <ImageRecorder />
+                                })()
+                            )
+                        }
                     </div>
                 </div>
             </div>
