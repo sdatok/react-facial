@@ -15,6 +15,10 @@ const About = () => {
                 </div>
             </nav>
             <p className='text-black'>Capstone Project</p>
+            <iframe src= "http://localhost:8501/"//"https://30days.streamlit.app/?embed=true"
+                    height="450"
+                    /*style="width:100%;border:none;"*/>
+                </iframe>
         </div>
     );
 };

@@ -128,6 +128,7 @@ const VideoRecorder = () => {
         <div className="flex flex-col items-center justify-center pt-6">
             <h2 className="text-xl font-bold text-black mb-4">Video Recorder</h2>
             <div className="flex items-start">
+                
                 <div className="video-container relative">
                     {!recordedVideo ? (
                         <video ref={liveVideoFeed} autoPlay className="w-auto" />
